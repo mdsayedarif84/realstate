@@ -9,5 +9,6 @@ class AgentController extends Controller
 {
     public function agentDashboard(){
         return view('agent.agent_dashboard');
+        // return view('agent.body.index');
     }
 }
