@@ -1,12 +1,12 @@
 @extends('admin.admin_dashboard')
 @section('title')
-    Property
+   All Property Type
 @endsection
 @section('admin')
 <div class="page-content">
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{route('add_type')}}" class="btn btn-info">Add Property</a>
+            <a href="{{route('add_type')}}" class="btn btn-outline-success">Add Property</a>
         </ol>
     </nav>
     <div class="row">
@@ -32,7 +32,7 @@
                                         <td>{{ $item->type_name }}</td>
                                         <td>{{ $item->type_icon }}</td>
                                         <td>
-                                            <a href="" class="btn btn-warning">Edit</a>
+                                            <a href="{{route('edit_type',$item->id)}}" class="btn btn-warning">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>

@@ -1,12 +1,12 @@
 @extends('admin.admin_dashboard')
 @section('title')
-    Add Property Type
+    Edit Property Type
 @endsection
 @section('admin')
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb float-right">
-                <a href="{{route('all_type')}}" class="btn btn-outline-danger">All Property Type</a>
+                <a href="{{route('add_type')}}" class="btn btn-outline-danger">Add Property Type</a>
             </ol>
         </nav>
         <div class="row">
@@ -17,13 +17,14 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body ">
-                                    <h6 class="card-title text-center text-danger"> Property Add Type</h6>
-                                    <form action="{{route('store_type')}}" method="POST" class="forms-sample">
+                                    <h6 class="card-title text-center text-danger"> Property Edit Type</h6>
+                                    <form action="{{route('update_type')}}" method="POST" class="forms-sample">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="type_name" class="col-sm-3 col-form-label text-md-right">Type Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="type_name"  class="form-control @error('type_name') is-invalid @enderror" id="type_name" >
+                                                <input type="text" name="type_name" value="{{$type->type_name}}"   class="form-control @error('type_name') is-invalid @enderror" id="type_name" >
+                                                <input type="hidden" name="pId" value="{{$type->id}}"   class="form-control >
                                             </div>
                                             @error('type_name')
                                                 <span class="text-danger">{{$message}}</span>
@@ -32,7 +33,7 @@
                                         <div class="row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Type Icon</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="type_icon"  class="form-control @error('type_icon') is-invalid @enderror" id="type_icon " >
+                                                <input type="text" name="type_icon" value="{{$type->type_icon}}"   class="form-control @error('type_icon') is-invalid @enderror" id="type_icon " >
                                             </div>
                                             @error('type_icon')
                                                 <span class="text-danger" role="alert">

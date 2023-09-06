@@ -30,5 +30,21 @@ class PropertyTypeController extends Controller
             'alert-type'    => 'success'
         );
         return redirect()->route('all_type')->with($notification);
-     }
+    }
+    public function EditType($id){
+        $type   =   PropertyType::findOrFail($id)->first();
+        return view('backend.type.edit_type',compact('type'));
+    }
+    public function UpdateType(Request $request){
+        $pId    =   $request->pId;
+        PropertyType::findOrFail($pId)->update([
+            'type_name'  =>  $request->type_name,   
+            'type_icon'  =>  $request->type_icon  
+        ]);
+        $notification       =   array(
+            'message'       => 'Property Data Add Successfully!!',
+            'alert-type'    => 'success'
+        );
+        return redirect()->route('all_type')->with($notification);
+    }
 }

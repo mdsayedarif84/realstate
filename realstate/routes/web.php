@@ -45,6 +45,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
          Route::get('/all/type','AllType')->name('all_type');
          Route::get('/add/type','AddType')->name('add_type');
          Route::post('/store/type','StoreType')->name('store_type');
+         Route::get('/edit/type/{id}','EditType')->name('edit_type');
+         Route::post('/update/type','UpdateType')->name('update_type');
 
     });
 
