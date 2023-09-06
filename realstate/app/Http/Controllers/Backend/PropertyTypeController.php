@@ -18,7 +18,7 @@ class PropertyTypeController extends Controller
      }
      public function StoreType(Request $request){
         $request->validate([
-            'type_name'  =>  'required','unique:property_types','max:200',   
+            'type_name'  =>  'required|unique:property_types|max:200',   
             'type_icon'  =>  'required'    
          ]);
         PropertyType::insert([

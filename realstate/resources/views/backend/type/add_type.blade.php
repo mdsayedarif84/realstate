@@ -6,7 +6,8 @@
     <div class="page-content">
         <div class="row">
             <div class="row profile-body">
-                <div class="col-md-9 col-xl-9 middle-wrapper">
+                <div class="col-md-2 col-xl-2 middle-wrapper"></div>
+                <div class="col-md-8 col-xl-8 middle-wrapper">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -46,6 +47,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2 col-xl-2 middle-wrapper"></div>
             </div>
         </div>
     </div>
