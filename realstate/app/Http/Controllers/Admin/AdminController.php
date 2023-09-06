@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Hash;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -23,9 +24,13 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
         return redirect('/admin/login');
     }
-    public function adminProfile(){
+    public function adminData(){
         $userId         =   Auth::user()->id;
         $profileData    =   User::find($userId);
+        return $profileData;
+    }
+    public function adminProfile(){
+        $profileData = $this->adminData();
         return view('admin.profile.profile',compact('profileData'));
     }
     public function profileDataImage($request){
@@ -50,40 +55,64 @@ class AdminController extends Controller
     }
     public function profileFinalUpdateInfo(Request $request){
         $imageFile      =   $request->file('photo');
-        $userId         =   Auth::user()->id;
-        $data           =   User::find($userId);
+        $profileData = $this->adminData();
         if ($imageFile) {
-            unlink($data->photo);
+            unlink($profileData->photo);
             $imageUrl = $this->profileDataImage($request);
-            $this->profileUpdateData($data,$request, $imageUrl);
+            $this->profileUpdateData($profileData,$request, $imageUrl);
         } else {
-            $this->profileUpdateData($data,$request);
+            $this->profileUpdateData($profileData,$request);
         }
-        $notification            =   array(
+        $notification       =   array(
             'message'       => 'Admin data update successfully',
             'alert-type'    => 'success'
         );
         return redirect()->back()->with($notification);
     }
-    // public function adminProfileStore(Request $request){
-    //     $userId         =   Auth::user()->id;
-    //     $data           =   User::find($userId);
-    //     $data->username =   $request->username;
-    //     $data->name     =   $request->name;
-    //     $data->email    =   $request->email;
-    //     $data->phone    =   $request->phone;
-    //     $data->address  =   $request->address;
-    //     $dataImage = $request->file('photo');
-    //     if($dataImage){
-    //         @unlink(public_path('upload/admin_images'.$data->photo));
-    //         $filetype = $file->getClientOriginalExtension();
-    //         $imageName = $request->name.'.'.$filetype;
-    //         $filename   =   date('YmdHi').'.'.$imageName;
-    //         $file->move(public_path('upload/admin_images'),$filename);
-    //         $data['photo']= $filename;    
-    //     }
-    //     // return $data;
-    //     $data->save();
-    //     return redirect()->back();
-    // }
+    public function adminChangePassword(){
+        $profileData = $this->adminData();
+        return view('admin.change.password',compact('profileData'));
+    }
+    public function adminUpdatePassword(Request $request){
+        $request->validate([
+            'old_password'  =>  'required',   
+            'new_password'  =>  'required','confirmed'   
+        ]); //validation
+        if(!Hash::check($request->old_password, auth::user()->password)){
+            $notification       =   array(
+                'message'       => 'Old Password Does not Match!',
+                'alert-type'    => 'error'
+            );
+            return back()->with($notification);
+        };//match old password
+        User::whereId(auth()->user()->id)->update([
+            'password'=> Hash::make($request->new_password)
+        ]);//update new password
+        $notification            =   array(
+            'message'       => 'Password update successfully',
+            'alert-type'    => 'success'
+        );
+        return back()->with($notification);
+    }
+    public function adminProfileStore(Request $request){
+        $userId         =   Auth::user()->id;
+        $data           =   User::find($userId);
+        $data->username =   $request->username;
+        $data->name     =   $request->name;
+        $data->email    =   $request->email;
+        $data->phone    =   $request->phone;
+        $data->address  =   $request->address;
+        $dataImage = $request->file('photo');
+        if($dataImage){
+            @unlink(public_path('upload/admin_images'.$data->photo));
+            $filetype = $file->getClientOriginalExtension();
+            $imageName = $request->name.'.'.$filetype;
+            $filename   =   date('YmdHi').'.'.$imageName;
+            $file->move(public_path('upload/admin_images'),$filename);
+            $data['photo']= $filename;    
+        }
+        // return $data;
+        $data->save();
+        return redirect()->back();
+    }
 }

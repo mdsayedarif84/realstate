@@ -103,7 +103,7 @@
               <div class="card">
 							<div class="card-body">
 								<h6 class="card-title text-center text-danger">Update Admin Profile</h6>
-								<form action="{{route('admin.profile.store')}}" method="POST" enctype="multipart/form-data" class="forms-sample">
+								<form action="{{route('admin_profile_store')}}" method="POST" enctype="multipart/form-data" class="forms-sample">
                   @csrf
 									<div class="row mb-3">
 										<label for="name" class="col-sm-2 col-form-label text-right">Name</label>
@@ -164,4 +164,5 @@
       });
     });
   </script>
+  
 @endsection

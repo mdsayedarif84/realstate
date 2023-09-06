@@ -183,7 +183,7 @@
 						</li>
             @php
               $userId         =   Auth::user()->id;
-              $profileData           =    App\Models\User::find($userId);
+              $profileData    =   App\Models\User::find($userId);
             @endphp
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -199,15 +199,15 @@
 								</div>
                 <ul class="list-unstyled p-1">
                   <li class="dropdown-item py-2">
-                    <a href="{{route('admin.profile')}}" class="text-body ms-0">
+                    <a href="{{route('admin_profile')}}" class="text-body ms-0">
                       <i class="me-2 icon-md" data-feather="user"></i>
                       <span>Profile</span>
                     </a>
                   </li>
                   <li class="dropdown-item py-2">
-                    <a href="javascript:;" class="text-body ms-0">
+                    <a href="{{route('admin_change_password')}}" class="text-body ms-0">
                       <i class="me-2 icon-md" data-feather="edit"></i>
-                      <span>Edit Profile</span>
+                      <span>Change Password</span>
                     </a>
                   </li>
                   <li class="dropdown-item py-2">

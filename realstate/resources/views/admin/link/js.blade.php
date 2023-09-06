@@ -15,6 +15,11 @@
     <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
     <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
     <script src="{{asset('backend/assets/js/toastr.min.js')}}"></script>
+	<!-- datatable link -->
+	<script src="{{asset('backend/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+  	<script src="{{asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
+  	<script src="{{asset('backend/assets/js/data-table.js')}}"></script>
+	<!-- end datatable -->
 	<script>
 		@if(Session::has('message'))
 		var type = "{{ Session::get('alert-type','info') }}"
