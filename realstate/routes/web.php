@@ -47,7 +47,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
          Route::post('/store/type','StoreType')->name('store_type');
          Route::get('/edit/type/{id}','EditType')->name('edit_type');
          Route::post('/update/type','UpdateType')->name('update_type');
-
+         Route::get('/delete/type/{id}','DeleteType')->name('delete_type');
     });
 
 });

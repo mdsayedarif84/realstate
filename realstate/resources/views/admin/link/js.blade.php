@@ -42,3 +42,8 @@
 		}
 		@endif 
 	</script>
+	<!-- sweetAlertMessage -->
+	<script src="{{asset('backend/assets/code/code.js')}}"></script>
+	<!-- sweetAlert -->
+	<script src="{{asset('backend/assets/sweetAlert/sweetalert.js')}}"></script>
+

@@ -33,7 +33,7 @@
                                         <td>{{ $item->type_icon }}</td>
                                         <td>
                                             <a href="{{route('edit_type',$item->id)}}" class="btn btn-warning">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="{{route('delete_type',$item->id)}}" id="delete" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                             @endforeach
