@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Backend\PropertyTypeController;
+use App\Http\Controllers\Backend\AmenitieController;
 
 
 
@@ -49,6 +50,14 @@ Route::middleware(['auth','role:admin'])->group(function () {
          Route::post('/update/type','UpdateType')->name('update_type');
          Route::get('/delete/type/{id}','DeleteType')->name('delete_type');
     });
+    Route::controller(AmenitieController::class)->group(function(){
+        Route::get('/all/amenitie','AllAmenitie')->name('all_amenitie');
+        Route::get('/add/amenitie','AddAmenitie')->name('add_amenitie');
+        Route::post('/store/amenitie','StoreAmenitie')->name('store_amenitie');
+        Route::get('/edit/amenitie/{id}','EditAmenitie')->name('edit_amenitie');
+        Route::post('/update/amenitie','UpdateAmenitie')->name('update_amenitie');
+        Route::get('/delete/amenitie/{id}','DeleteAmenitie')->name('delete_amenitie');
+   });
 
 });
 

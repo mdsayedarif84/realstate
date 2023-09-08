@@ -32,7 +32,7 @@ class PropertyTypeController extends Controller
         return redirect()->route('all_type')->with($notification);
     }
     public function EditType($id){
-        $type   =   PropertyType::findOrFail($id)->first();
+        $type   =   PropertyType::findOrFail($id);
         return view('backend.type.edit_type',compact('type'));
     }
     public function UpdateType(Request $request){
