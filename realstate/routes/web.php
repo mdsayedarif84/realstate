@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\AmenitieController;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\GorupNameController;
 
 
 
@@ -58,6 +60,22 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::post('/update/amenitie','UpdateAmenitie')->name('update_amenitie');
         Route::get('/delete/amenitie/{id}','DeleteAmenitie')->name('delete_amenitie');
    });
+   Route::controller(RoleController::class)->group(function(){
+        Route::get('/all/permission','AllPermission')->name('all_permission');
+        Route::get('/add/permission','AddPermission')->name('add_permission');
+        Route::post('/store/permission','StorePermission')->name('store_permission');
+        Route::get('/edit/permission/{id}','EditPermission')->name('edit_permission');
+        Route::post('/update/permission','UpdatePermission')->name('update_permission');
+        Route::get('/delete/permission/{id}','DeletePermission')->name('delete_permission');
+    });
+    Route::controller(GorupNameController::class)->group(function(){
+        Route::get('/all/GroupName','AllGroupName')->name('all_group_name');
+        Route::get('/add/GroupName','AddGroupName')->name('add_group_name');
+        Route::post('/store/GroupName','StoreGroupName')->name('store_group_name');
+        Route::get('/edit/GroupName/{id}','EditGroupName')->name('edit_group_name');
+        Route::post('/update/GroupName','UpdateGroupName')->name('update_group_name');
+        Route::get('/delete/GroupName/{id}','DeleteGroupName')->name('delete_group_name');
+    });
 
 });
 
