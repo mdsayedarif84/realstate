@@ -23,7 +23,7 @@
                                     <th>GroupName </th>
                                     <th>GroupName Value </th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,8 +34,21 @@
                                         <td>{{ $item->g_name_value }}</td>
                                         <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <a href="{{route('edit_group_name',['id'=>$item->id])}}" class="btn btn-warning">Edit</a>
-                                            <a href="{{route('delete_group_name',$item->id)}}" id="delete" class="btn btn-danger">Delete</a>
+                                            <a href="{{route('edit_group_name',['id'=>$item->id])}}" class="btn btn-warning btn-sm" title="edit">
+                                                <i class="edit" data-feather="edit"></i>
+                                            </a>
+                                            <a href="{{route('delete_group_name',$item->id)}}" id="delete" class="btn btn-danger" title="delete">
+                                                <i class="edit" data-feather="delete"></i>
+                                            </a>
+                                            @if($item->status == 1)
+                                                <a href="{{route('inactive_group_name',['id'=>$item->id])}}" class="btn btn-success btn-sm" title="Acitve">
+                                                    <i class="edit" data-feather="arrow-up"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{route('active_group_name',['id'=>$item->id])}}" class="btn btn-primary btn-sm" title="Inactive">
+                                                    <i class="edit" data-feather="arrow-down"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                             @endforeach

@@ -45,12 +45,12 @@ Route::middleware(['auth','role:agent'])->group(function () {
 });
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::controller(PropertyTypeController::class)->group(function(){
-         Route::get('/all/type','AllType')->name('all_type');
-         Route::get('/add/type','AddType')->name('add_type');
-         Route::post('/store/type','StoreType')->name('store_type');
-         Route::get('/edit/type/{id}','EditType')->name('edit_type');
-         Route::post('/update/type','UpdateType')->name('update_type');
-         Route::get('/delete/type/{id}','DeleteType')->name('delete_type');
+        Route::get('/all/type','AllType')->name('all_type');
+        Route::get('/add/type','AddType')->name('add_type');
+        Route::post('/store/type','StoreType')->name('store_type');
+        Route::get('/edit/type/{id}','EditType')->name('edit_type');
+        Route::post('/update/type','UpdateType')->name('update_type');
+        Route::get('/delete/type/{id}','DeleteType')->name('delete_type');
     });
     Route::controller(AmenitieController::class)->group(function(){
         Route::get('/all/amenitie','AllAmenitie')->name('all_amenitie');
@@ -75,6 +75,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::get('/edit/GroupName/{id}','EditGroupName')->name('edit_group_name');
         Route::post('/update/GroupName','UpdateGroupName')->name('update_group_name');
         Route::get('/delete/GroupName/{id}','DeleteGroupName')->name('delete_group_name');
+        Route::get('/acitve/GroupName/{id}','ActiveGroupName')->name('active_group_name');
+        Route::get('/inactive/GroupName/{id}','InactiveGroupName')->name('inactive_group_name');
     });
 
 });
