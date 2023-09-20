@@ -25,7 +25,9 @@ class RoleController extends Controller{
         $this->validate($request,
             [
                 'name'  =>  'required|unique:permissions|regex:/^[a-zA-Z\s\w]+$/',  
-                'group_name'  =>  'required'    
+                'g_name_val'  =>  'required',    
+                'group_name'  =>  'required' ,   
+                'status'  =>  'required' ,   
             ],
             [
             'name.required' => 'Please Input Name!',
@@ -38,7 +40,9 @@ class RoleController extends Controller{
         $this->validData($request);
         $permission              =   new Permission();
         $permission->name  =   $request->name;
-        $permission->group_name      =   $request->group_name;
+        $permission->g_name_val      =   $request->g_name_val;
+        $permission->group_id      =   $request->group_id;
+        $permission->status      =   $request->status;
         $permission->save();
        
         $notification       =   array(
@@ -57,12 +61,17 @@ class RoleController extends Controller{
     public function UpdatePermission(Request $request){
         $pById   =   Permission::find($request->pId);
         $pById->name  =   $request->name;
-        $pById->group_name        =   $request->group_name;
+        $pById->g_name_val        =   $request->g_name_val;
+        $pById->group_id        =   $request->group_id;
+        $pById->status        =   $request->status;
         $pById->save();
         $notification       =   array(
             'message'       => 'Permission Data Update Successfully!!',
             'alert-type'    => 'success'
         );
         return redirect()->route('all_permission')->with($notification);
+    }
+    Public function ImportPermission(){
+        return view('backend.pages.permission.import_permission');
     }
 }

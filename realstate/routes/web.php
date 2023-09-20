@@ -67,6 +67,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::get('/edit/permission/{id}','EditPermission')->name('edit_permission');
         Route::post('/update/permission','UpdatePermission')->name('update_permission');
         Route::get('/delete/permission/{id}','DeletePermission')->name('delete_permission');
+
+        Route::get('/export/permission','ExportPermission')->name('export_permission');
+        Route::get('/import/permission','ImportPermission')->name('import_permission');
+
     });
     Route::controller(GorupNameController::class)->group(function(){
         Route::get('/all/GroupName','AllGroupName')->name('all_group_name');

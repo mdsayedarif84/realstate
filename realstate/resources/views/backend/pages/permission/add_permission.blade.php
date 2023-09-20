@@ -31,10 +31,21 @@
                                                 @enderror   
                                             </div>
                                         </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="name" class="col-sm-3 col-form-label text-md-right">Group Name Value</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="g_name_val" value="{{ old('g_name_val') }}" class="form-control @error('g_name_val') is-invalid @enderror">
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->has('g_name_val') ? $errors->first('g_name_val') : ' '  }}</strong>
+                                                    </span>
+                                                @enderror   
+                                            </div>
+                                        </div>
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Group Name</label>
                                             <div class="col-sm-9">
-                                                <select name="group_name" class="form-select form-control">
+                                                <select name="group_id" class="form-select form-control">
                                                     <option  disabled selected >Select Group</option>
                                                     @foreach($groupNames as $key=> $item)
                                                         <option value="{{$item->id}}">{{$item->g_name}}</option>
@@ -77,7 +88,13 @@
                     name: {
                         required : true,
                     }, 
-                    group_name: {
+                    g_name_val: {
+                        required : true,
+                    }, 
+                    group_id: {
+                        required : true,
+                    }, 
+                    status: {
                         required : true,
                     }, 
                 },
@@ -85,7 +102,7 @@
                     name: {
                         required : 'Please Enter Permission Name',
                     }, 
-                    group_name: {
+                    group_id: {
                         required : 'Please Select Group',
                     }, 
                 },

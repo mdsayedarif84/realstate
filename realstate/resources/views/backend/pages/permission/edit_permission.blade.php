@@ -7,6 +7,7 @@
         <nav class="page-breadcrumb">
             <ol class="breadcrumb float-right">
                 <a href="{{route('add_permission')}}" class="btn btn-outline-danger">Add Permission</a>
+                &nbsp; &nbsp; &nbsp;
                 <a href="{{route('all_permission')}}" class="btn btn-outline-info">All Permission</a>
             </ol>
         </nav>
@@ -33,13 +34,24 @@
                                                 @enderror  
                                             </div>
                                         </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="name" class="col-sm-3 col-form-label text-md-right">Group Name Value</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="g_name_val" value="{{ $permission->g_name_val }}" class="form-control @error('g_name_val') is-invalid @enderror">
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->has('g_name_val') ? $errors->first('g_name_val') : ' '  }}</strong>
+                                                    </span>
+                                                @enderror   
+                                            </div>
+                                        </div>
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Group Name</label>
                                             <div class="col-sm-9">
-                                                <select name="g_name" class="form-select form-control">
+                                                <select name="group_id" class="form-select form-control">
                                                     <option  disabled selected >Select Group</option>
                                                     @foreach($groupNames as $key=> $value)
-                                                        <option value="{{$value->id}}" {{ ($value->g_name == 1 ? 'selected' : '') }}>{{ $value->g_name }}</option>
+                                                        <option value="{{$value->id}}">{{ $value->g_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -73,5 +85,45 @@
     <script>
         document.forms['myForm'].elements['status'].value = '{!! $permission->status !!}';
         // document.forms['myForm'].elements['g_name'].value = '{!! $value->g_name !!}';
+    </script>
+    <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $('#myForm').validate({
+                rules: {
+                    name: {
+                        required : true,
+                    }, 
+                    g_name_val: {
+                        required : true,
+                    }, 
+                    group_id: {
+                        required : true,
+                    }, 
+                    status: {
+                        required : true,
+                    }, 
+                },
+                messages :{
+                    name: {
+                        required : 'Please Enter Permission Name',
+                    }, 
+                    group_id: {
+                        required : 'Please Select Group',
+                    }, 
+                },
+                errorElement : 'span', 
+                errorPlacement: function (error,element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight : function(element, errorClass, validClass){
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight : function(element, errorClass, validClass){
+                    $(element).removeClass('is-invalid');
+                },
+            });
+        });
     </script>
 @endsection

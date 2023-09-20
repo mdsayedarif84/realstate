@@ -170,6 +170,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // ...Spatie
         Spatie\Permission\PermissionServiceProvider::class,
+        // laravel excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,6 +187,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        // laravel excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];
