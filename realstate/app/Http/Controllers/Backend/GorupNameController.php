@@ -19,12 +19,10 @@ class GorupNameController extends Controller
     public function StoreGroupName(Request $request){
         $request->validate([
             'g_name'  =>  'required|unique:group_names|max:200',   
-            'g_name_value'  =>  'required',    
             'status'  =>  'required',    
         ]);
         GroupName::insert([
             'g_name'  =>  $request->g_name,   
-            'g_name_value'  =>  $request->g_name_value,   
             'status'  =>  $request->status  
         ]);
         $notification       =   array(
@@ -41,7 +39,6 @@ class GorupNameController extends Controller
         $gId    =   $request->gId;
         GroupName::findOrFail($gId)->update([
             'g_name'  =>  $request->g_name,   
-            'g_name_value'  =>  $request->g_name_value,   
             'status'  =>  $request->status  
         ]);
         $notification       =   array(

@@ -26,12 +26,6 @@
                                                 <input type="text" name="g_name"  class="form-control"  >
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="amenitie_name" class="col-sm-3 col-form-label text-md-right">Group Name Value </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="g_name_value"  class="form-control"  >
-                                            </div>
-                                        </div>
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Status</label>
                                             <div class="col-sm-9">
@@ -68,9 +62,6 @@
                         required : true,
                         unique : true,
                     }, 
-                    g_name_value: {
-                        required : true,
-                    },
                     status: {
                         required : true,
                     }, 
@@ -78,9 +69,6 @@
                 messages :{
                     g_name: {
                         required : 'Please Enter Group Name',
-                    }, 
-                    g_name_value: {
-                        required : 'Please Enter Group Name Value',
                     }, 
                     status: {
                         required : 'Please Select Status',

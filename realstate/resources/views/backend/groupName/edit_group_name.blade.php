@@ -6,8 +6,9 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb float-right">
-                <a href="{{route('add_group_name')}}" class="btn btn-outline-danger">Add Amenitie</a>
-                <a href="{{route('all_group_name')}}" class="btn btn-outline-success">All Amenitie</a>
+                <a href="{{route('add_group_name')}}" class="btn btn-outline-danger">Add Group</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{{route('all_group_name')}}" class="btn btn-outline-success">All Group</a>
             </ol>
         </nav>
         <div class="row">
@@ -26,12 +27,6 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="g_name" value="{{$groupName->g_name}}"   class="form-control" id="amenities_name" >
                                                 <input type="hidden" name="gId" value="{{$groupName->id}}"   class="form-control ">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="g_name_value" class="col-sm-3 col-form-label text-md-right">GroupName Value </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" value="{{$groupName->g_name_value}}" name="g_name_value"  class="form-control"  >
                                             </div>
                                         </div>
                                         <div class="row mb-3">

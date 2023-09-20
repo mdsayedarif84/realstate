@@ -84,7 +84,7 @@
     </div>
     <script>
         document.forms['myForm'].elements['status'].value = '{!! $permission->status !!}';
-        // document.forms['myForm'].elements['g_name'].value = '{!! $value->g_name !!}';
+        // document.forms['myForm'].elements['group_id'].value = '{!! $value->g_name !!}';
     </script>
     <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
     <script type="text/javascript">
