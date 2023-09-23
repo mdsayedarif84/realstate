@@ -3,14 +3,14 @@
    All Permission
 @endsection
 @section('admin')
-<div class="page-content">
-    <nav class="page-breadcrumb">
-        <ol class="breadcrumb">
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+            <div class="page-content"> 
             <a href="{{route('add_permission')}}" class="btn btn-outline-success">Add Permission</a>
             &nbsp; &nbsp; &nbsp;
-            <a href="{{route('export_permission')}}" class="btn btn-outline-warning">Exports </a>
-            &nbsp; &nbsp; &nbsp;
             <a href="{{route('import_permission')}}" class="btn btn-outline-danger"> Imports </a>
+            &nbsp; &nbsp; &nbsp;
+            <a href="{{route('export')}}" class="btn btn-outline-warning">Exports </a>
         </ol>
     </nav>
     <div class="row">
@@ -60,8 +60,12 @@
                                             <td>SMTP Setting</td>
                                         @elseif($item->group_id==12)
                                             <td>Site Setting</td>
-                                        @else($item->group_id==13)
+                                        @elseif($item->group_id==13)
                                             <td>Role & Permission</td>
+                                        @elseif($item->group_id==14)
+                                            <td>Delete</td>
+                                        @else($item->group_id==15)
+                                            <td>Agent</td>
                                         @endif
                                         <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                                         <td>

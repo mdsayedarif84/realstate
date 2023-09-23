@@ -7,6 +7,8 @@
         <nav class="page-breadcrumb">
             <ol class="breadcrumb float-right">
                 <a href="{{route('all_permission')}}" class="btn btn-outline-danger">All Permission</a>
+                &nbsp; &nbsp; &nbsp;
+                <a href="{{route('export')}}" class="btn btn-outline-info">Download XLsx</a>
             </ol>
         </nav>
         <div class="row">
@@ -18,13 +20,12 @@
                             <div class="card">
                                 <div class="card-body ">
                                     <h6 class="card-title text-center text-danger">XLsx File </h6>
-                                    <form id="myForm" action="{{route('store_permission')}}" method="POST" class="forms-sample">
+                                    <form id="myForm" action="{{route('import')}}" method="POST" enctype="multipart/form-data" class="forms-sample">
                                         @csrf
                                         <div class="form-group row mb-3">
                                             <label for="name" class="col-sm-3 col-form-label text-md-right">XLsx File Import</label>
                                             <div class="col-sm-9">
-                                                <input type="file" name="import" class="form-controlr">
-                                                
+                                                <input type="file" name="import_file" class="form-controlr">
                                             </div>
                                         </div>
                                         <div class="row mb-3">

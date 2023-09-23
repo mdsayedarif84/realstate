@@ -68,8 +68,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::post('/update/permission','UpdatePermission')->name('update_permission');
         Route::get('/delete/permission/{id}','DeletePermission')->name('delete_permission');
 
-        Route::get('/export/permission','ExportPermission')->name('export_permission');
         Route::get('/import/permission','ImportPermission')->name('import_permission');
+        Route::get('/export','Export')->name('export');
+        Route::post('/import','Import')->name('import');
+
 
     });
     Route::controller(GorupNameController::class)->group(function(){

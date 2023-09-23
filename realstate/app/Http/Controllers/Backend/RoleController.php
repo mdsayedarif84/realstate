@@ -4,6 +4,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PermissionExport;
+use App\Imports\PermissionImport;
+
 use App\Models\GroupName;
 use DB;
 
@@ -73,5 +77,16 @@ class RoleController extends Controller{
     }
     Public function ImportPermission(){
         return view('backend.pages.permission.import_permission');
+    }
+    Public function Export(){
+        return Excel::download(new PermissionExport, 'permission.xlsx');
+    }
+    Public function Import(Request $request){
+        Excel::import(new PermissionImport, $request->file('import_file'));
+        $notification       =   array(
+            'message'       => 'Permission Data Import Successfully!!',
+            'alert-type'    => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
