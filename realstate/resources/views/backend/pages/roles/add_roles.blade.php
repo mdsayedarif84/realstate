@@ -1,12 +1,12 @@
 @extends('admin.admin_dashboard')
 @section('title')
-    Add Permission
+    Add Roles
 @endsection
 @section('admin')
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb float-right">
-                <a href="{{route('all_permission')}}" class="btn btn-outline-danger">All Permission</a>
+                <a href="{{route('all_roles')}}" class="btn btn-outline-danger">All Roles</a>
             </ol>
         </nav>
         <div class="row">
@@ -17,11 +17,11 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body ">
-                                    <h6 class="card-title text-center text-danger">Add Permission </h6>
-                                    <form id="myForm" action="{{route('store_permission')}}" method="POST" class="forms-sample">
+                                    <h6 class="card-title text-center text-danger">Add Roles </h6>
+                                    <form id="myForm" action="{{route('store_roles')}}" method="POST" class="forms-sample">
                                         @csrf
                                         <div class="form-group row mb-3">
-                                            <label for="name" class="col-sm-3 col-form-label text-md-right">Permission Name</label>
+                                            <label for="name" class="col-sm-3 col-form-label text-md-right">Roles Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror">
                                                 @error('name')
@@ -31,28 +31,7 @@
                                                 @enderror   
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="name" class="col-sm-3 col-form-label text-md-right">Group Name Value</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="g_name_val" value="{{ old('g_name_val') }}" class="form-control @error('g_name_val') is-invalid @enderror">
-                                                @error('g_name_val')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->has('g_name_val') ? $errors->first('g_name_val') : ' '  }}</strong>
-                                                    </span>
-                                                @enderror   
-                                            </div>
-                                        </div>
-                                        <div class=" form-group row mb-3">
-                                            <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Group Name</label>
-                                            <div class="col-sm-9">
-                                                <select name="group_id" class="form-select form-control">
-                                                    <option  disabled selected >Select Group</option>
-                                                    @foreach($groupNames as $key=> $item)
-                                                        <option value="{{$item->id}}">{{$item->g_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
+                                        
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Status</label>
                                             <div class="col-sm-9">
@@ -88,10 +67,7 @@
                     name: {
                         required : true,
                     }, 
-                    g_name_val: {
-                        required : true,
-                    }, 
-                    group_id: {
+                    status: {
                         required : true,
                     }, 
                     status: {
@@ -102,8 +78,8 @@
                     name: {
                         required : 'Please Enter Permission Name',
                     }, 
-                    group_id: {
-                        required : 'Please Select Group',
+                    status: {
+                        required : 'Please Select Status',
                     }, 
                 },
                 errorElement : 'span', 

@@ -10,18 +10,21 @@
 
 	<title>Admin Login</title>
     <style>
+      div{
+          background-image: url({{asset('upload/loginBack.jpg')}});
+      }
         .authLogin-side-wrapper{
             width:100%;
             height:100%;
             background-image:url({{asset('upload/login.png')}});
+          
         }
     </style>
-
   <!-- Fonts -->
   @include('admin.link.css')
 </head>
-<body>
-	<div class="main-wrapper">
+<body id="bgPic">
+	<div class="main-wrapper" >
 		<div class="page-wrapper full-page">
 			<div class="page-content d-flex align-items-center justify-content-center">
 				<div class="row w-100 mx-0 auth-page">

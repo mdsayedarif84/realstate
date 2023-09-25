@@ -98,15 +98,27 @@
                 <div class="collapse" id="advancedUI">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                        <a href="{{route('all_permission')}}" class="nav-link">All Permission</a>
+                            <a href="{{route('all_permission')}}" class="nav-link">All Permission</a>
                         </li>
                         <li class="nav-item">
-                        <a href="{{route('add_permission')}}" class="nav-link">Add Permission</a>
+                            <a href="{{route('add_permission')}}" class="nav-link">Add Permission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('all_roles')}}" class="nav-link">All Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('add_roles')}}" class="nav-link">Add Roles</a>
                         </li>
                     </ul>
                 </div>
             </li>            
-            <li class="nav-item nav-category">Role & Permission</li>
+            <li class="nav-item nav-category">All Roles</li>
+            <li class="nav-item">
+                <a href="{{ route('all_roles') }}" target="_blank" class="nav-link">
+                <i class="link-icon" data-feather="feather"></i>
+                    <span class="link-title">All Roles</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="https://www.nobleui.com/html/documentation/docs.html" target="_blank" class="nav-link">
                 <i class="link-icon" data-feather="hash"></i>

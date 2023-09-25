@@ -74,6 +74,15 @@ Route::middleware(['auth','role:admin'])->group(function () {
 
 
     });
+    ////// All Role ///////
+    Route::controller(RoleController::class)->group(function(){
+        Route::get('/all/roles','AllRoles')->name('all_roles');
+        Route::get('/add/roles','AddRoles')->name('add_roles');
+        Route::post('/store/roles','StoreRoles')->name('store_roles');
+        Route::get('/edit/permission/{id}','EditPermission')->name('edit_permission');
+        Route::post('/update/permission','UpdatePermission')->name('update_permission');
+        Route::get('/delete/permission/{id}','DeletePermission')->name('delete_permission');
+    });
     Route::controller(GorupNameController::class)->group(function(){
         Route::get('/all/GroupName','AllGroupName')->name('all_group_name');
         Route::get('/add/GroupName','AddGroupName')->name('add_group_name');
