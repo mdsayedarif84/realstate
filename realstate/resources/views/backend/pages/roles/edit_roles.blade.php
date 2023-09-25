@@ -1,11 +1,13 @@
 @extends('admin.admin_dashboard')
 @section('title')
-    Add Roles
+    Edit Roles
 @endsection
 @section('admin')
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb float-right">
+                <a href="{{route('add_roles')}}" class="btn btn-outline-danger">Add Roles</a>
+                &nbsp; &nbsp; &nbsp;
                 <a href="{{route('all_roles')}}" class="btn btn-outline-danger">All Roles</a>
             </ol>
         </nav>
@@ -18,12 +20,13 @@
                             <div class="card">
                                 <div class="card-body ">
                                     <h6 class="card-title text-center text-danger">Add Roles </h6>
-                                    <form id="myForm" action="{{route('store_roles')}}" method="POST" class="forms-sample">
+                                    <form id="myForm" action="{{route('update_roles')}}" method="POST" class="forms-sample">
                                         @csrf
                                         <div class="form-group row mb-3">
                                             <label for="name" class="col-sm-3 col-form-label text-md-right">Roles Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror">
+                                                <input type="text" name="name" value="{{ $roles->name }}" class="form-control @error('name') is-invalid @enderror">
+                                                <input type="hidden" name="rId" value="{{ $roles->id }}" class="form-control ">
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->has('name') ? $errors->first('name') : ' '  }}</strong>
@@ -59,6 +62,9 @@
             </div>
         </div>
     </div>
+    <script>
+        document.forms['myForm'].elements['status'].value = '{!! $roles->status !!}';
+    </script>
     <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function (){

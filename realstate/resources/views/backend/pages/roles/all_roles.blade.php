@@ -32,10 +32,10 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>
-                                                <a href="" class="btn btn-warning btn-sm" title="Edit">
+                                                <a href="{{route('edit_roles',['id'=>$item->id])}}" class="btn btn-warning btn-sm" title="Edit">
                                                     <i class="edit" data-feather="edit"></i>
                                                 </a>
-                                                <a href="" id="delete" class="btn btn-danger btn-sm" title="Delete">
+                                                <a href="{{route('delete_roles',['id'=>$item->id])}}" id="delete" class="btn btn-danger btn-sm" title="Delete">
                                                     <i class="edit" data-feather="delete"></i>
                                                 </a>
                                             </td>
