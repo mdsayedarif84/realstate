@@ -60,6 +60,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::post('/update/amenitie','UpdateAmenitie')->name('update_amenitie');
         Route::get('/delete/amenitie/{id}','DeleteAmenitie')->name('delete_amenitie');
    });
+   /// Permission ///
    Route::controller(RoleController::class)->group(function(){
         Route::get('/all/permission','AllPermission')->name('all_permission');
         Route::get('/add/permission','AddPermission')->name('add_permission');

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-
+use DB;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -39,4 +39,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public static function groupPermissions(){
+        $groupPermissions    = DB::table('permissions')
+            ->select('g_name_val')
+            ->groupBy('g_name_val')
+            ->get();
+        return $groupPermissions;
+        
+    }
+    public static function getpermissionByGroupName($g_name_val){
+        $permissions    = DB::table('permissions')
+            ->select('name','id')
+            ->where('g_name_val',$g_name_val)
+            ->get();
+        return $permissions;
+        
+    }
 }

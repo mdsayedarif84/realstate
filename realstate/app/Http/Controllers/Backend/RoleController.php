@@ -9,6 +9,7 @@ use App\Exports\PermissionExport;
 use App\Imports\PermissionImport;
 
 use App\Models\GroupName;
+use App\Models\User;
 use DB;
 
 class RoleController extends Controller{
@@ -136,7 +137,8 @@ class RoleController extends Controller{
     public function AddRolesPermission(){ 
         $roles  = Role::all();
         $permission = Permission::all();
-        return view('backend.pages.rolesSetup.add_roles_permission',compact('roles','permission'));
+        $permission_groups  =   User::groupPermissions();
+        return view('backend.pages.rolesSetup.add_roles_permission',compact('roles','permission','permission_groups'));
 
     }
 }

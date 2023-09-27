@@ -102,6 +102,9 @@
                     name: {
                         required : 'Please Enter Permission Name',
                     }, 
+                    g_name_val: {
+                        required : 'Please Fill Up Input',
+                    }, 
                     group_id: {
                         required : 'Please Select Group',
                     }, 

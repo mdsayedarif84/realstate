@@ -11,8 +11,8 @@
         </nav>
         <div class="row">
             <div class="row profile-body">
-                <div class="col-md-2 col-xl-2 middle-wrapper"></div>
-                <div class="col-md-8 col-xl-8 middle-wrapper ">
+                <div class="col-md-1 col-xl-1 middle-wrapper"></div>
+                <div class="col-md-10 col-xl-10 middle-wrapper ">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -42,13 +42,36 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class=" form-group row mb-3">
+                                        <div class="row">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right"></label>
                                             <div class=" col-sm-9 ">
                                                 <input type="checkbox" class="form-check-input" id="checkDefault">
                                                 <label class="form-check-label" for="checkDefault">Permission All</label>
                                             </div>
 										</div>
+                                        <hr>
+                                        @foreach($permission_groups as $group)
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class=" form-check mb-2 ">
+                                                        <input name="g_name_val" type="checkbox" class="form-check-input" id="checkDefault">
+                                                        <label class="form-check-label" for="checkDefault">{{$group->g_name_val}}</label>
+                                                    </div>
+                                                </div>                                            
+                                                <div class="col-9">
+                                                    @php
+                                                        $permissions= App\Models\User::getpermissionByGroupName($group->g_name_val);
+                                                    @endphp
+                                                    @foreach($permissions as $value)
+                                                        <div class=" form-check mb-2 ">
+                                                            <input name="permission[]" value="{{$value->id}}" id="checkDefault{{$value->id}}" type="checkbox" class="form-check-input" >
+                                                            <label class="form-check-label" for="checkDefault{{$value->id}}">{{$value->name}}</label>
+                                                        </div>
+                                                    @endforeach
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                         <div class="row mb-3">
                                             <label for="" class="col-sm-5 col-form-label text-md-right"></label>
                                             <div class="col-sm-7">
@@ -61,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-xl-2 middle-wrapper"></div>
+                <div class="col-md-1 col-xl-1 middle-wrapper"></div>
             </div>
         </div>
     </div>
