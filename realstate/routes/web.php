@@ -82,6 +82,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::get('/edit/roles/{id}','EditRoles')->name('edit_roles');
         Route::post('/update/roles','UpdateRoles')->name('update_roles');
         Route::get('/delete/roles/{id}','DeleteRoles')->name('delete_roles');
+
+        Route::get('/add/roles/permission','AddRolesPermission')->name('add_roles_permission');
     });
     ///// All Group //////
     Route::controller(GorupNameController::class)->group(function(){

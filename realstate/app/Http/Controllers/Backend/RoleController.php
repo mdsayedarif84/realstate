@@ -133,4 +133,10 @@ class RoleController extends Controller{
         );
         return redirect()->back()->with($notification);
     }
+    public function AddRolesPermission(){ 
+        $roles  = Role::all();
+        $permission = Permission::all();
+        return view('backend.pages.rolesSetup.add_roles_permission',compact('roles','permission'));
+
+    }
 }

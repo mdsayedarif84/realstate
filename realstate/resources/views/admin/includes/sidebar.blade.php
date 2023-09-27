@@ -107,7 +107,7 @@
                             <a href="{{route('all_roles')}}" class="nav-link">All Roles</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('add_roles')}}" class="nav-link">Add Roles</a>
+                            <a href="{{route('add_roles_permission')}}" class="nav-link">Add Roles Permission</a>
                         </li>
                     </ul>
                 </div>
