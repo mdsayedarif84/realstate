@@ -61,6 +61,19 @@ class RoleController extends Controller{
         return view('backend.pages.permission.edit_permission',compact('permission','groupNames'));
     }
     public function UpdatePermission(Request $request){
+        $this->validate($request,
+            [
+                'name'  =>  'required|regex:/^[A-Za-z\s.]+$/',  
+                'g_name_val'  =>  'required',    
+                'group_name'  =>  'required' ,   
+                'status'  =>  'required' ,   
+            ],
+            [
+            'name.required' => 'Please Input Name!',
+            'name.regex' => 'Only letters, spaces, and dots are allowed.', 
+            'group_name.required' => 'Fillup the group name!',
+            ]
+        );
         $pById              =   Permission::find($request->pId);
         $pById->name        =   $request->name;
         $pById->g_name_val  =   $request->g_name_val;
