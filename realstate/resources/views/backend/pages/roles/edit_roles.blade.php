@@ -49,7 +49,7 @@
                                         <div class="row mb-3">
                                             <label for="" class="col-sm-5 col-form-label text-md-right"></label>
                                             <div class="col-sm-7">
-                                                <button type="submit" class="btn btn-primary me-2">Save Changes</button>
+                                                <button type="submit" class="btn btn-primary me-2">Update Changes</button>
                                             </div>
                                         </div>
                                     </form>

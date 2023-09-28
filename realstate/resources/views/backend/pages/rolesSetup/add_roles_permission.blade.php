@@ -20,17 +20,6 @@
                                     <h6 class="card-title text-center text-danger">Add Roles Permission </h6>
                                     <form id="myForm" action="{{route('store_permission')}}" method="POST" class="forms-sample">
                                         @csrf
-                                        <div class="form-group row mb-3">
-                                            <label for="name" class="col-sm-3 col-form-label text-md-right">Permission Name</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror">
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->has('name') ? $errors->first('name') : ' '  }}</strong>
-                                                    </span>
-                                                @enderror   
-                                            </div>
-                                        </div>
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Role Name</label>
                                             <div class="col-sm-9">

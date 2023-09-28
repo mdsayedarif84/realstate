@@ -73,7 +73,7 @@
                 },
                 messages :{
                     name: {
-                        required : 'Please Enter Permission Name',
+                        required : 'Please Enter Role Name',
                     }, 
                     status: {
                         required : 'Please Select Status',

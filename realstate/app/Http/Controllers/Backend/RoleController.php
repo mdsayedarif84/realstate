@@ -98,6 +98,18 @@ class RoleController extends Controller{
         return view('backend.pages.roles.add_roles');
     }
     public function StoreRoles(Request $request){
+        $this->validate($request,
+            [
+                'name'  =>  'required|unique:users|regex:/^[a-zA-Z\s]+$/',  
+                'status'  =>  'required' ,   
+            ],
+            [
+            'name.required' => 'Please Input Name!',
+            'name.regex' => 'Letter, Space only Accepted!', 
+            'status.required' => 'Fillup the group name!',
+            ]
+        );
+
         $role           =   new Role();
         $role->name     =   $request->name;
         $role->status   =   $request->status;
@@ -115,6 +127,17 @@ class RoleController extends Controller{
         return view('backend.pages.roles.edit_roles',compact('roles'));
     }
     public function UpdateRoles(Request $request){
+        $this->validate($request,
+            [
+                'name'  =>  'required|regex:/^[a-zA-Z\s]+$/',  
+                'status'  =>  'required' ,   
+            ],
+            [
+            'name.required' => 'Please Input Name!',
+            'name.regex' => 'Letter, Space only Accepted!', 
+            'status.required' => 'Fillup the group name!',
+            ]
+        );
         $rById              =   Role::find($request->rId);
         $rById->name        =   $request->name;
         $rById->status      =   $request->status;
