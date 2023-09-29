@@ -15,6 +15,7 @@ use DB;
 class RoleController extends Controller{
     Public function AllPermission(){
         $permission = Permission::all();
+        // return $permission;
         return view('backend.pages.permission.all_permission',compact('permission'));
     }
     public function GroupNames(){

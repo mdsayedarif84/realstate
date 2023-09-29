@@ -26,7 +26,7 @@
                                         <th>SL</th>
                                         <th> Name</th>
                                         <th>Group Name Value</th>
-                                        <th>Group ID</th>
+                                        <th>Group Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -37,7 +37,7 @@
                                             <td>{{$key+1}}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->g_name_val }}</td>
-                                            @if($item->group_id ==1)
+                                            @if($item->g_name_val == 'type')
                                                 <td>Property type</td>
                                             @elseif($item->group_id==2)
                                                 <td>State</td>
