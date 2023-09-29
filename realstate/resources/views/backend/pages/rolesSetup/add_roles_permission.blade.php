@@ -4,11 +4,6 @@
 @endsection
 @section('admin')
     <div class="page-content">
-        <nav class="page-breadcrumb">
-            <ol class="breadcrumb float-right">
-                <a href="{{route('all_permission')}}" class="btn btn-outline-danger">All Permission</a>
-            </ol>
-        </nav>
         <div class="row">
             <div class="row profile-body">
                 <div class="col-md-1 col-xl-1 middle-wrapper"></div>
@@ -34,8 +29,8 @@
                                         <div class="row">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right"></label>
                                             <div class=" col-sm-9 ">
-                                                <input type="checkbox" class="form-check-input" id="checkDefault">
-                                                <label class="form-check-label" for="checkDefault">Permission All</label>
+                                                <input type="checkbox" class="form-check-input" id="checkDefaultmain">
+                                                <label class="form-check-label" for="checkDefaultmain">Permission All</label>
                                             </div>
 										</div>
                                         <hr>
@@ -77,44 +72,17 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script> -->
     <script type="text/javascript">
-        $(document).ready(function (){
-            $('#myForm').validate({
-                rules: {
-                    name: {
-                        required : true,
-                    }, 
-                    g_name_val: {
-                        required : true,
-                    }, 
-                    group_id: {
-                        required : true,
-                    }, 
-                    status: {
-                        required : true,
-                    }, 
-                },
-                messages :{
-                    name: {
-                        required : 'Please Enter Permission Name',
-                    }, 
-                    group_id: {
-                        required : 'Please Select Group',
-                    }, 
-                },
-                errorElement : 'span', 
-                errorPlacement: function (error,element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight : function(element, errorClass, validClass){
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight : function(element, errorClass, validClass){
-                    $(element).removeClass('is-invalid');
-                },
-            });
-        });
+        $('#checkDefaultmain').click(function(){
+            if($(this).is(':checked')){
+                $('input[type=checkbox]').prop('checked',ture);
+            }else{
+                $('input[type=checkbox]').prop('checked',flase);
+            }
+        }); 
+       
     </script>
+    
 @endsection

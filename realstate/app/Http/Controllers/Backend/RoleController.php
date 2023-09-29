@@ -28,15 +28,15 @@ class RoleController extends Controller{
     protected function ValidData($request){
         $this->validate($request,
             [
-                'name'  =>  'required|unique:permissions|regex:/^[a-zA-Z\s]+$/',  
+                'name'  =>  'required|unique:permissions|regex:/^[a-zA-Z\s\-_\.]+$/',
                 'g_name_val'  =>  'required',    
-                'group_name'  =>  'required' ,   
+                'group_id'  =>  'required' ,   
                 'status'  =>  'required' ,   
             ],
             [
             'name.required' => 'Please Input Name!',
-            'name.regex' => 'Letter, Space only Accepted!', 
-            'group_name.required' => 'Fillup the group name!',
+            'name.regex' => 'Only Letter,hypen,underscore,Space & Dots Accepted!', 
+            'group_id.required' => 'Fillup the group name!',
             ]
         );
     }
@@ -63,15 +63,15 @@ class RoleController extends Controller{
     public function UpdatePermission(Request $request){
         $this->validate($request,
             [
-                'name'  =>  'required|regex:/^[A-Za-z\s.]+$/',  
+                'name'  =>  'required|regex:/^[a-zA-Z\s\-_\.]+$/',
                 'g_name_val'  =>  'required',    
-                'group_name'  =>  'required' ,   
+                'group_id'  =>  'required' ,   
                 'status'  =>  'required' ,   
             ],
             [
             'name.required' => 'Please Input Name!',
-            'name.regex' => 'Only letters, spaces, and dots are allowed.', 
-            'group_name.required' => 'Fillup the group name!',
+            'name.regex' => 'Only letters, spaces,Hypen,Underscore and dots are allowed.', 
+            'group_id.required' => 'Fillup the group name!',
             ]
         );
         $pById              =   Permission::find($request->pId);
