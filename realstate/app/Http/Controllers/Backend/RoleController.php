@@ -10,7 +10,7 @@ use App\Imports\PermissionImport;
 
 use App\Models\GroupName;
 use App\Models\User;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller{
     Public function AllPermission(){
@@ -123,12 +123,10 @@ class RoleController extends Controller{
             'status.required' => 'Fillup the group name!',
             ]
         );
-
         $role           =   new Role();
         $role->name     =   $request->name;
         $role->status   =   $request->status;
         $role->save();
-       
         $notification       =   array(
             'message'       => 'Role Data Add Successfully!!',
             'alert-type'    => 'success'
@@ -171,11 +169,25 @@ class RoleController extends Controller{
         );
         return redirect()->back()->with($notification);
     }
+
     public function AddRolesPermission(){ 
         $roles  = Role::all();
         $permission = Permission::all();
         $permission_groups  =   User::groupPermissions();
         return view('backend.pages.rolesSetup.add_roles_permission',compact('roles','permission','permission_groups'));
-
+    }
+    public function StoreRolesPermission(Request $request){
+        $data = [];
+        $permissions =  $request->permission;
+        foreach($permissions as $key => $item){
+            $data['role_id']= $request->role_id;
+            $data['permission_id']= $item;
+            DB::table('role_has_permissions')->insert($data);
+        } 
+        $notification       =   array(
+            'message'       => ' Role Permission data Successfully!!',
+            'alert-type'    => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
