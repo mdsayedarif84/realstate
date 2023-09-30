@@ -18,7 +18,7 @@
                     <span class="link-title">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item nav-category">Realestate</li>
+                <li class="nav-item nav-category text-danger fs-6">Realestate</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
                         <i class="link-icon" data-feather="mail"></i>
@@ -70,7 +70,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item nav-category">Permission Menu</li>
+                <li class="nav-item nav-category text-danger fs-6">Permission Menu</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#permission" role="button" aria-expanded="false" aria-controls="permission">
                         <i class="link-icon" data-feather="feather"></i>
@@ -88,7 +88,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item nav-category">Role Permission Menu</li>
+                <li class="nav-item nav-category text-danger fs-6">Role Permission Menu</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#role" role="button" aria-expanded="false" aria-controls="role">
                         <i class="link-icon" data-feather="box"></i>
