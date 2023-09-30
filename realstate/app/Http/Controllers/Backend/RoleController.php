@@ -91,6 +91,7 @@ class RoleController extends Controller{
     Public function ImportPermission(){
         return view('backend.pages.permission.import_permission');
     }
+    
     Public function Export(){
         return Excel::download(new PermissionExport, 'permission.xlsx');
     }
@@ -172,9 +173,8 @@ class RoleController extends Controller{
 
     public function AddRolesPermission(){ 
         $roles  = Role::all();
-        $permission = Permission::all();
         $permission_groups  =   User::groupPermissions();
-        return view('backend.pages.rolesSetup.add_roles_permission',compact('roles','permission','permission_groups'));
+        return view('backend.pages.rolesSetup.add_roles_permission',compact('roles','permission_groups'));
     }
     public function StoreRolesPermission(Request $request){
         $data = [];
@@ -193,7 +193,10 @@ class RoleController extends Controller{
     public function AllRolesPermission(){
         $roles  = Role::all();
         return view('backend.pages.rolesSetup.all_roles_permission',compact('roles'));
-
-
+    }
+    public function AdminRolesEdit($id){
+        $role   =   Role::findOrFail($id);
+        $permission_groups  =   User::groupPermissions();
+        return view('backend.pages.rolesSetup.edit_roles_permission',compact('role','permission_groups')); 
     }
 }

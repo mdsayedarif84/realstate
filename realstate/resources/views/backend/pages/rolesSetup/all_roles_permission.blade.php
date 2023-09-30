@@ -6,10 +6,11 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                    <div class="page-content"> 
+                <div class="page-content"> 
                     <a href="{{route('add_roles_permission')}}" class="btn btn-outline-success">Add Roles Permission</a>
-                </ol>
-            </nav>
+                </div>
+            </ol>
+        </nav>
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
@@ -36,7 +37,7 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <a href="{{route('edit_roles',['id'=>$item->id])}}" class="btn btn-warning btn-sm" title="Edit">
+                                                <a href="{{route('admin_roles_edit',['id'=>$item->id])}}" class="btn btn-warning btn-sm" title="Edit">
                                                     <i class="edit" data-feather="edit"></i>
                                                 </a>
                                                 <a href="{{route('delete_roles',['id'=>$item->id])}}" id="delete" class="btn btn-danger btn-sm" title="Delete">
