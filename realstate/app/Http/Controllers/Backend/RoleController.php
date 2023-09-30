@@ -190,4 +190,10 @@ class RoleController extends Controller{
         );
         return redirect()->back()->with($notification);
     }
+    public function AllRolesPermission(){
+        $roles  = Role::all();
+        return view('backend.pages.rolesSetup.all_roles_permission',compact('roles'));
+
+
+    }
 }

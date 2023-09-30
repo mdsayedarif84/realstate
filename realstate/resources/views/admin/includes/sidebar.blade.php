@@ -88,7 +88,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item nav-category">Role Menu</li>
+                <li class="nav-item nav-category">Role Permission Menu</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#role" role="button" aria-expanded="false" aria-controls="role">
                         <i class="link-icon" data-feather="box"></i>
@@ -102,6 +102,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('add_roles_permission')}}" class="nav-link">Add Roles Permission</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('all_roles_permission')}}" class="nav-link">All Roles Permission</a>
                             </li>
                         </ul>
                     </div>

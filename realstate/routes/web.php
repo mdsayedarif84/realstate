@@ -86,6 +86,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
 
         Route::get('/add/roles/permission','AddRolesPermission')->name('add_roles_permission');
         Route::post('/add/store/permission','StoreRolesPermission')->name('store_roles_permission');
+        Route::get('/all/roles/permission','AllRolesPermission')->name('all_roles_permission');
     });
     ///// All Group //////
     Route::controller(GorupNameController::class)->group(function(){
