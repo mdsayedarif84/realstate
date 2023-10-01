@@ -45,10 +45,10 @@
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Group Name</label>
                                             <div class="col-sm-9">
-                                                <select name="group_id" class="form-select form-control">
+                                                <select name="group_name" class="form-select form-control">
                                                     <option  disabled selected >Select Group</option>
-                                                    @foreach($groupNames as $key=> $item)
-                                                        <option value="{{$item->id}}">{{$item->g_name}}</option>
+                                                    @foreach($groupNames as $item)
+                                                        <option value="{{$item->g_name}}">{{$item->g_name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

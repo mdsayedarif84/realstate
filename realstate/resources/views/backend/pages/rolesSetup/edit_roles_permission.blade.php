@@ -62,9 +62,9 @@
                                                     <br>
                                                 </div>
                                             </div>
+                                            <label for="" class="col-sm-5 col-form-label text-md-right"></label>
                                         @endforeach
                                         <div class="row mb-3">
-                                            <label for="" class="col-sm-5 col-form-label text-md-right"></label>
                                             <div class="col-sm-7">
                                                 <button type="submit" class="btn btn-primary me-2">Save Changes</button>
                                             </div>

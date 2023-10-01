@@ -45,13 +45,15 @@
                                                 @enderror   
                                             </div>
                                         </div>
+                                        
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Group Name</label>
                                             <div class="col-sm-9">
-                                                <select name="group_id" class="form-select form-control">
+                                            <input type="text" id="gName" name="group_name" value="{{ $permission->group_name }}"  class="form-control @error('group_name') is-invalid @enderror mb-3">
+                                                <select id="selectName" class="form-select form-control">
                                                     <option  disabled selected >Select Group</option>
-                                                    @foreach($groupNames as $key=> $value)
-                                                        <option value="{{$value->id}}">{{ $value->g_name }}</option>
+                                                    @foreach($groupNames as $value)
+                                                        <option value="{{$value->g_name}}">{{ $value->g_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -59,7 +61,7 @@
                                         <div class="row mb-3">
                                             <label for="status" class="col-sm-3 col-form-label text-md-right">Status</label>
                                             <div class="col-sm-9">
-                                                <select name="status" class="form-select form-control " >
+                                                <select name="status" class="form-select form-control ">
                                                     <option  disabled selected >Select Status</option>
                                                     <option value="1">Active</option>
                                                     <option value="0">Inactive</option>
@@ -84,9 +86,21 @@
     </div>
     <script>
         document.forms['myForm'].elements['status'].value = '{!! $permission->status !!}';
-        // document.forms['myForm'].elements['group_id'].value = '{!! $value->g_name !!}';
+        // document.forms['myForm'].elements['group_name'].value = '{!! $permission->group_name !!}';
     </script>
     <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+        // Attach a click event handler to the first input
+        $('#selectName').on('change', function() {
+            // Get the value from the first input
+            var inputValue = $(this).val();
+            // Set the value of the second input to the first input's value
+            $('#gName').val(inputValue);
+        });
+    });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function (){
             $('#myForm').validate({

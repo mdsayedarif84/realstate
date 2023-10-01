@@ -31,13 +31,13 @@ class RoleController extends Controller{
             [
                 'name'  =>  'required|unique:permissions|regex:/^[a-zA-Z\s\-_\.]+$/',
                 'g_name_val'  =>  'required',    
-                'group_id'  =>  'required' ,   
+                'group_name'  =>  'required' ,   
                 'status'  =>  'required' ,   
             ],
             [
             'name.required' => 'Please Input Name!',
             'name.regex' => 'Only Letter,hypen,underscore,Space & Dots Accepted!', 
-            'group_id.required' => 'Fillup the group name!',
+            'group_name.required' => 'Fillup the group name!',
             ]
         );
     }
@@ -46,7 +46,7 @@ class RoleController extends Controller{
         $permission                 =   new Permission();
         $permission->name           =   $request->name;
         $permission->g_name_val     =   $request->g_name_val;
-        $permission->group_id       =   $request->group_id;
+        $permission->group_name       =   $request->group_name;
         $permission->status         =   $request->status;
         $permission->save();
        
@@ -66,7 +66,7 @@ class RoleController extends Controller{
             [
                 'name'  =>  'required|regex:/^[a-zA-Z\s\-_\.]+$/',
                 'g_name_val'  =>  'required',    
-                'group_id'  =>  'required' ,   
+                'group_name'  =>  'required' ,   
                 'status'  =>  'required' ,   
             ],
             [
@@ -78,7 +78,7 @@ class RoleController extends Controller{
         $pById              =   Permission::find($request->pId);
         $pById->name        =   $request->name;
         $pById->g_name_val  =   $request->g_name_val;
-        $pById->group_id    =   $request->group_id;
+        $pById->group_name    =   $request->group_name;
         $pById->status      =   $request->status;
         $pById->save();
         $notification       =   array(
