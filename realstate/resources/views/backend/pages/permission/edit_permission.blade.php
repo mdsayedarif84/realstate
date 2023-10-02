@@ -86,7 +86,6 @@
     </div>
     <script>
         document.forms['myForm'].elements['status'].value = '{!! $permission->status !!}';
-        // document.forms['myForm'].elements['group_name'].value = '{!! $permission->group_name !!}';
     </script>
     <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
     <script>
@@ -111,7 +110,7 @@
                     g_name_val: {
                         required : true,
                     }, 
-                    group_id: {
+                    group_name: {
                         required : true,
                     }, 
                     status: {
@@ -122,8 +121,8 @@
                     name: {
                         required : 'Please Enter Permission Name',
                     }, 
-                    group_id: {
-                        required : 'Please Select Group',
+                    group_name: {
+                        required : 'Please Select Group Name',
                     }, 
                 },
                 errorElement : 'span', 
