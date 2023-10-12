@@ -40,12 +40,12 @@
                                                 <a href="{{route('admin_roles_edit',['id'=>$item->id])}}" class="btn btn-warning btn-sm" title="Edit">
                                                     <i class="edit" data-feather="edit"></i>
                                                 </a>
-                                                <a href="{{route('delete_roles',['id'=>$item->id])}}" id="delete" class="btn btn-danger btn-sm" title="Delete">
+                                                <a href="{{route('delete_admin_role',['id'=>$item->id])}}" id="delete" class="btn btn-danger btn-sm" title="Delete">
                                                     <i class="edit" data-feather="delete"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

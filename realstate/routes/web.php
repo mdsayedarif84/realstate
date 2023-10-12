@@ -10,7 +10,6 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\GorupNameController;
 
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -61,7 +60,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::get('/delete/amenitie/{id}','DeleteAmenitie')->name('delete_amenitie');
    });
    /// Permission ///
-   Route::controller(RoleController::class)->group(function(){
+    Route::controller(RoleController::class)->group(function(){
         Route::get('/all/permission','AllPermission')->name('all_permission');
         Route::get('/add/permission','AddPermission')->name('add_permission');
         Route::post('/store/permission','StorePermission')->name('store_permission');
@@ -72,10 +71,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::get('/import/permission','ImportPermission')->name('import_permission');
         Route::get('/export','Export')->name('export');
         Route::post('/import','Import')->name('import');
-
-
     });
-    ////// All Role ///////
+    ////// All Role & Add Role Permission ///////
     Route::controller(RoleController::class)->group(function(){
         Route::get('/all/roles','AllRoles')->name('all_roles');
         Route::get('/add/roles','AddRoles')->name('add_roles');
@@ -88,6 +85,19 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::post('/add/store/permission','StoreRolesPermission')->name('store_roles_permission');
         Route::get('/all/roles/permission','AllRolesPermission')->name('all_roles_permission');
         Route::get('/admin/roles/edit/{id}','AdminRolesEdit')->name('admin_roles_edit');
+        Route::post('/admin/roles/update/','AdminRolesUpdate')->name('update_admin_role');
+        Route::get('/delete/admin/roles/{id}','AdminRoleDelete')->name('delete_admin_role');
+    });
+    //allAdmin
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/all/admin','AllAdmin')->name('all_admin');
+        Route::get('/add/admin','AddAdmin')->name('add_admin');
+        Route::post('/store/admin','adminFinalStoreInfo')->name('store_admin');
+        Route::get('/edit/admin/{id}','EditAdmin')->name('edit_admin');
+        Route::post('/update/admin','adminFinalUpdateInfo')->name('update_admin');
+        Route::get('/delete/admin/{id}','DeleteAdmin')->name('delete_admin');
+
+
     });
     ///// All Group //////
     Route::controller(GorupNameController::class)->group(function(){

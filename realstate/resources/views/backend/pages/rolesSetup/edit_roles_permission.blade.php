@@ -25,13 +25,14 @@
                             <div class="card">
                                 <div class="card-body ">
                                     <h6 class="card-title text-center text-danger">Edit Roles Permission </h6>
-                                    <form id="myForm" action="{{route('store_roles_permission')}}" method="POST" class="forms-sample">
+                                    <form id="myForm" action="{{route('update_admin_role')}}" method="POST" class="forms-sample">
                                         @csrf
                                         <div class=" form-group row mb-3">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right">Role Name</label>
                                             <div class="col-sm-9">
                                                 <h4>{{$role->name}}</h4>
                                             </div>
+                                            <input type="hidden" value="{{$role->id}}" name="rId"  class="form-control">
                                         </div>
                                         <div class="row">
                                             <label for="type_icon" class="col-sm-3 col-form-label text-md-right"></label>
@@ -66,7 +67,7 @@
                                         @endforeach
                                         <div class="row mb-3">
                                             <div class="col-sm-7">
-                                                <button type="submit" class="btn btn-primary me-2">Save Changes</button>
+                                                <button type="submit" class="btn btn-primary me-2">Update Changes</button>
                                             </div>
                                         </div>
                                     </form>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -94,25 +96,140 @@ class AdminController extends Controller
         );
         return back()->with($notification);
     }
-    public function adminProfileStore(Request $request){
-        $userId         =   Auth::user()->id;
-        $data           =   User::find($userId);
+    // public function adminProfileStore(Request $request){
+    //     $userId         =   Auth::user()->id;
+    //     $data           =   User::find($userId);
+    //     $data->username =   $request->username;
+    //     $data->name     =   $request->name;
+    //     $data->email    =   $request->email;
+    //     $data->phone    =   $request->phone;
+    //     $data->address  =   $request->address;
+    //     $dataImage = $request->file('photo');
+    //     if($dataImage){
+    //         @unlink(public_path('upload/admin_images'.$data->photo));
+    //         $filetype = $file->getClientOriginalExtension();
+    //         $imageName = $request->name.'.'.$filetype;
+    //         $filename   =   date('YmdHi').'.'.$imageName;
+    //         $file->move(public_path('upload/admin_images'),$filename);
+    //         $data['photo']= $filename;    
+    //     }
+    //     // return $data;
+    //     $data->save();
+    //     return redirect()->back();
+    // }
+    public function AllAdmin(){
+        $allAmdins  = User::where('role','admin')->get();
+        return view('backend.pages.admin.all_admin',compact('allAmdins'));
+ 
+    }
+    public function AddAdmin(){
+        $roles  = Role::all();
+        return view('backend.pages.admin.add_admin',compact('roles'));
+    }
+    //admin validation
+    protected function adminValidation($request){
+        $this->validate($request, [
+            'username' => 'required|min:3|max:50',
+            'name' => 'required',
+            'status' => 'required',
+            'email' => 'required|unique:users',
+            'phone' => 'required',
+            'address' => 'required',
+            'photo' => 'required',
+        ],
+            [
+                'username.required' => 'Fill Up The nique Name!',
+                'name.required' => 'Please set the link!',
+                'email.required' => 'Please set the link!',
+                'status.required' => 'Please select the status!',
+                'email.required' => 'Please write something about this.',
+            ]
+        );
+    }
+    //protected data in admin.
+    protected function adminDataImage($request){
+        $file           =   $request->file('photo');
+        $filetype       =   $file->getClientOriginalExtension();
+        $imageName      =   $request->name.'.'.$filetype;
+        $filename       =   date('YmdHi').'.'.$imageName;
+        $directory      =   'upload/admin_images/';
+        $imageUrl       =   $file->move($directory,$filename);
+        return $imageUrl;
+    }
+    protected function adminStoreData($request,$imageUrl){
+        $data           =   new User();
         $data->username =   $request->username;
         $data->name     =   $request->name;
         $data->email    =   $request->email;
         $data->phone    =   $request->phone;
+        $data->password =   Hash::make($request->password);
+        $data->role     =   'admin';
+        $data->status   =   $request->status;
+        $data->photo    =   $imageUrl;
         $data->address  =   $request->address;
-        $dataImage = $request->file('photo');
-        if($dataImage){
-            @unlink(public_path('upload/admin_images'.$data->photo));
-            $filetype = $file->getClientOriginalExtension();
-            $imageName = $request->name.'.'.$filetype;
-            $filename   =   date('YmdHi').'.'.$imageName;
-            $file->move(public_path('upload/admin_images'),$filename);
-            $data['photo']= $filename;    
-        }
-        // return $data;
         $data->save();
-        return redirect()->back();
+        if($request->roles){
+            $data->assignRole($request->roles);
+        }
+    }
+    public function adminFinalStoreInfo(Request $request){
+        $this->adminValidation($request);
+        $imageUrl = $this->adminDataImage($request);
+        $this->adminStoreData($request, $imageUrl);
+        $notification       =   array(
+            'message'       => 'Admin data Store successfully',
+            'alert-type'    => 'success'
+        );
+        return redirect()->route('all_admin')->with($notification);
+    }
+    public function EditAdmin($id){
+        $user   =   User::findOrFail($id);
+        $roles   =   Role::all();
+        return view('backend.pages.admin.edit_admin',compact('user','roles'));
+    }
+    //admin Update
+    protected function adminUpdateData($data,$request,$imageUrl = null){
+        $data->username =   $request->username;
+        $data->name     =   $request->name;
+        $data->email    =   $request->email;
+        $data->phone    =   $request->phone;
+        $data->status   =   $request->status;
+        if($imageUrl){
+            $data->photo=   $imageUrl;
+        }
+        $data->address  =   $request->address;
+        $data->save();
+
+        $data->roles()->detach();
+        if($request->roles){
+            $data->assignRole($request->roles);
+        }
+    }
+    public function adminFinalUpdateInfo(Request $request){
+        $imageFile      =   $request->file('photo');
+        $adById              =   User::find($request->adId);
+        if ($imageFile) {
+            unlink($adById->photo);
+            $imageUrl = $this->adminDataImage($request);
+            $this->adminUpdateData($adById,$request, $imageUrl);
+        } else {
+            $this->adminUpdateData($adById,$request);
+        }
+        $notification       =   array(
+            'message'       => 'Admin data update successfully',
+            'alert-type'    => 'success'
+        );
+        return redirect()->route('all_admin')->with($notification);
+    }
+    public function DeleteAdmin($id){
+        $user = User::findOrFail($id);
+        if(!is_null($user)){
+            $user->delete();
+        }
+        $notification       =   array(
+            'message'       => 'Admin Data Delete Successfully!!',
+            'alert-type'    => 'success'
+        );
+        return redirect()->route('all_admin')->with($notification);
     }
 }

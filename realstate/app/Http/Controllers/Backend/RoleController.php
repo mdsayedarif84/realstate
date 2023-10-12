@@ -185,7 +185,7 @@ class RoleController extends Controller{
             DB::table('role_has_permissions')->insert($data);
         } 
         $notification       =   array(
-            'message'       => ' Role Permission data Successfully!!',
+            'message'       => 'Role Permission data Successfully!!',
             'alert-type'    => 'success'
         );
         return redirect()->back()->with($notification);
@@ -196,7 +196,31 @@ class RoleController extends Controller{
     }
     public function AdminRolesEdit($id){
         $role   =   Role::findOrFail($id);
+        // return $role;
         $permission_groups  =   User::groupPermissions();
         return view('backend.pages.rolesSetup.edit_roles_permission',compact('role','permission_groups')); 
+    }
+    public function AdminRolesUpdate(Request $request){
+        $rById              =   Role::findOrFail($request->rId);
+        $permission        =   $request->permission;
+        if(!empty($permission)){
+            $rById->syncPermissions($permission);
+        }
+        $notification       =   array(
+            'message'       => 'Add Permission Role Data Update Successfully!!',
+            'alert-type'    => 'success'
+        );
+        return redirect()->route('all_roles_permission')->with($notification);
+    }
+    public function AdminRoleDelete($id){
+        $role=   Role::findOrFail($id);
+        if(!is_null($role)){
+            $role->delete();
+        }
+        $notification       =   array(
+            'message'       => 'Admin  Data Delete Successfully!!',
+            'alert-type'    => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

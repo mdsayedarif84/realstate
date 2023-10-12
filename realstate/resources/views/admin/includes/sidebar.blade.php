@@ -19,6 +19,7 @@
                     </a>
                 </li>
                 <li class="nav-item nav-category text-danger fs-6">Realestate</li>
+                @if(Auth::user()->can('type.menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
                         <i class="link-icon" data-feather="mail"></i>
@@ -27,15 +28,21 @@
                     </a>
                     <div class="collapse" id="emails">
                         <ul class="nav sub-menu">
+                            @if(Auth::user()->can('all_type'))
                             <li class="nav-item">
                                 <a href="{{route('all_type')}}" class="nav-link">All Type</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('add_type'))
                             <li class="nav-item">
                                 <a href="{{route('add_type')}}" class="nav-link">Add Type</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @endif
+                @if(Auth::user()->can('amenitie.menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#amenitie" role="button" aria-expanded="false" aria-controls="emails">
                         <i class="link-icon" data-feather="calendar"></i>
@@ -44,15 +51,20 @@
                     </a>
                     <div class="collapse" id="amenitie">
                         <ul class="nav sub-menu">
+                            @if(Auth::user()->can('all_amenitie'))
                             <li class="nav-item">
                                 <a href="{{route('all_amenitie')}}" class="nav-link">All Amenities</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('add_amenitie'))
                             <li class="nav-item">
                                 <a href="{{route('add_amenitie')}}" class="nav-link">Add Amenities</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#groupName" role="button" aria-expanded="false" aria-controls="emails">
                         <i class="link-icon" data-feather="calendar"></i>
@@ -70,6 +82,7 @@
                         </ul>
                     </div>
                 </li>
+                @if(Auth::user()->can('type.menu'))
                 <li class="nav-item nav-category text-danger fs-6">Permission Menu</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#permission" role="button" aria-expanded="false" aria-controls="permission">
@@ -108,13 +121,32 @@
                             </li>
                         </ul>
                     </div>
-                </li>            
+                </li>
+                <li class="nav-item nav-category text-danger fs-6">Manage Admin</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#admin" role="button" aria-expanded="false" aria-controls="admins">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Admin Type</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="admin">
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{route('all_admin')}}" class="nav-link">All Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('add_admin')}}" class="nav-link">Add Admin</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>        
                 <li class="nav-item">
                     <a href="https://www.nobleui.com/html/documentation/docs.html" target="_blank" class="nav-link">
                     <i class="link-icon" data-feather="hash"></i>
                     <span class="link-title">Documentation</span>
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
     </nav>
