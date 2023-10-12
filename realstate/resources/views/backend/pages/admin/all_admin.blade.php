@@ -50,7 +50,7 @@
                                                     <i class="edit" data-feather="edit"></i>
                                                 </a>
                                                 <a href="{{route('delete_admin',$value->id)}}" id="delete" class="btn btn-danger btn-sm" title="Delete">
-                                                    <i class="edit" data-feather="delete"></i>
+                                                    <i class="trash-2" data-feather="trash-2"></i>
                                                 </a>
                                             </td>
                                         </tr>

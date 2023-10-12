@@ -32,8 +32,16 @@
                                         <td>{{ $item->amenities_name }}</td>
                                         <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <a href="{{route('edit_amenitie',['id'=>$item->id])}}" class="btn btn-warning">Edit</a>
-                                            <a href="{{route('delete_amenitie',$item->id)}}" id="delete" class="btn btn-danger">Delete</a>
+                                            @if(Auth::user()->can('edit_amenitie'))
+                                            <a href="{{route('edit_amenitie',['id'=>$item->id])}}" class="btn btn-warning">
+                                                <i class="edit-3" data-feather="edit-3"></i>
+                                            </a>
+                                            @endif
+                                            @if(Auth::user()->can('delete_amenitie'))
+                                            <a href="{{route('delete_amenitie',$item->id)}}" id="delete" class="btn btn-danger">
+                                                <i class="trash-2" data-feather="trash-2"></i>
+                                            </a>
+                                            @endif
                                         </td>
                                     </tr>
                             @endforeach

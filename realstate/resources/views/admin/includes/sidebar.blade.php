@@ -65,6 +65,7 @@
                     </div>
                 </li>
                 @endif
+                @if(Auth::user()->can('type.menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#groupName" role="button" aria-expanded="false" aria-controls="emails">
                         <i class="link-icon" data-feather="calendar"></i>
@@ -73,17 +74,22 @@
                     </a>
                     <div class="collapse" id="groupName">
                         <ul class="nav sub-menu">
+                        @if(Auth::user()->can('type.menu'))
                             <li class="nav-item">
                                 <a href="{{route('all_group_name')}}" class="nav-link">All Group Name</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('type.menu'))
                             <li class="nav-item">
                                 <a href="{{route('add_group_name')}}" class="nav-link">Add Group Name</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
-                @if(Auth::user()->can('type.menu'))
+                @endif
                 <li class="nav-item nav-category text-danger fs-6">Permission Menu</li>
+                @if(Auth::user()->can('permission_menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#permission" role="button" aria-expanded="false" aria-controls="permission">
                         <i class="link-icon" data-feather="feather"></i>
@@ -92,37 +98,51 @@
                     </a>
                     <div class="collapse" id="permission">
                         <ul class="nav sub-menu">
+                        @if(Auth::user()->can('all_permission'))
                             <li class="nav-item">
                                 <a href="{{route('all_permission')}}" class="nav-link">All Permission</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('add_permission'))
                             <li class="nav-item">
                                 <a href="{{route('add_permission')}}" class="nav-link">Add Permission</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item nav-category text-danger fs-6">Role Permission Menu</li>
+                @if(Auth::user()->can('role_permission_menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#role" role="button" aria-expanded="false" aria-controls="role">
                         <i class="link-icon" data-feather="box"></i>
-                        <span class="link-title">Role</span>
+                        <span class="link-title">Role & Permission</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
                     <div class="collapse" id="role">
                         <ul class="nav sub-menu">
+                        @if(Auth::user()->can('all_roles'))
                             <li class="nav-item">
                                 <a href="{{route('all_roles')}}" class="nav-link">All Roles</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('add_roles'))
                             <li class="nav-item">
                                 <a href="{{route('add_roles_permission')}}" class="nav-link">Add Roles Permission</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('all_roles_permission'))
                             <li class="nav-item">
                                 <a href="{{route('all_roles_permission')}}" class="nav-link">All Roles Permission</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item nav-category text-danger fs-6">Manage Admin</li>
+                @if(Auth::user()->can('	admin_menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#admin" role="button" aria-expanded="false" aria-controls="admins">
                         <i class="link-icon" data-feather="mail"></i>
@@ -131,22 +151,26 @@
                     </a>
                     <div class="collapse" id="admin">
                         <ul class="nav sub-menu">
+                            @if(Auth::user()->can('all_admin'))
                             <li class="nav-item">
                                 <a href="{{route('all_admin')}}" class="nav-link">All Admin</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('add_admin'))
                             <li class="nav-item">
                                 <a href="{{route('add_admin')}}" class="nav-link">Add Admin</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
-                </li>        
+                </li>
+                @endif        
                 <li class="nav-item">
                     <a href="https://www.nobleui.com/html/documentation/docs.html" target="_blank" class="nav-link">
                     <i class="link-icon" data-feather="hash"></i>
                     <span class="link-title">Documentation</span>
                     </a>
                 </li>
-                @endif
             </ul>
         </div>
     </nav>

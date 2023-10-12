@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller{
     Public function AllPermission(){
-        $permission = Permission::all();
+        // $permission = Permission::all();
+        $permission = DB::table('permissions')
+            ->select('permissions.*')
+            ->orderBy('id', 'DESC')
+            ->get();
         // return $permission;
         return view('backend.pages.permission.all_permission',compact('permission'));
     }
