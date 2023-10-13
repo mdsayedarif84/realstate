@@ -46,12 +46,16 @@
                                             </td>
                                             <td>{{ $value->status}}</td>
                                             <td>
+                                                @if(Auth::user()->can('edit_admin'))
                                                 <a href="{{route('edit_admin',['id'=>$value->id])}}" class="btn btn-warning btn-sm" title="Edit">
                                                     <i class="edit" data-feather="edit"></i>
                                                 </a>
+                                                @endif
+                                                @if(Auth::user()->can('delete_admin'))
                                                 <a href="{{route('delete_admin',$value->id)}}" id="delete" class="btn btn-danger btn-sm" title="Delete">
                                                     <i class="trash-2" data-feather="trash-2"></i>
                                                 </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

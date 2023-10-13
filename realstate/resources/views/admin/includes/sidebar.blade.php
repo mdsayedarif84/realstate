@@ -142,7 +142,7 @@
                 </li>
                 @endif
                 <li class="nav-item nav-category text-danger fs-6">Manage Admin</li>
-                @if(Auth::user()->can('	admin_menu'))
+                @if(Auth::user()->can('admin_menu'))
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#admin" role="button" aria-expanded="false" aria-controls="admins">
                         <i class="link-icon" data-feather="mail"></i>
