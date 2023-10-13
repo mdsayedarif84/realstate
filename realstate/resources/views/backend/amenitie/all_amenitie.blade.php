@@ -5,9 +5,11 @@
 @section('admin')
 <div class="page-content">
     <nav class="page-breadcrumb">
+        @if(Auth::user()->can('add_amenitie'))
         <ol class="breadcrumb">
             <a href="{{route('add_amenitie')}}" class="btn btn-outline-success">Add Amenitie</a>
         </ol>
+        @endif
     </nav>
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">

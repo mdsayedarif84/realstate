@@ -5,9 +5,11 @@
 @section('admin')
     <div class="page-content">
         <nav class="page-breadcrumb">
+            @if(Auth::user()->can('all_amenitie'))
             <ol class="breadcrumb float-right">
                 <a href="{{route('all_amenitie')}}" class="btn btn-outline-danger">All Amenitie</a>
             </ol>
+            @endif
         </nav>
         <div class="row">
             <div class="row profile-body">
