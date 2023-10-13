@@ -18,13 +18,19 @@ class PropertyTypeController extends Controller
      }
      public function StoreType(Request $request){
         $request->validate([
-            'type_name'  =>  'required|unique:property_types|max:200',   
-            'type_icon'  =>  'required'    
-         ]);
-        PropertyType::insert([
-            'type_name'  =>  $request->type_name,   
-            'type_icon'  =>  $request->type_icon  
-        ]);
+                'type_name'  =>  'required|unique:property_types|max:200',   
+                'type_icon'  =>  'required'    
+            ],
+            [
+                'type_name.unique' => 'The Name Have Already Taken!',
+                'name.required' => 'Please set the Icon Name!',
+            ]
+        );
+        $propertyType   =   new PropertyType();
+        $propertyType->type_name   = $request->type_name;
+        $propertyType->type_icon   = $request->type_icon;
+        $propertyType->save() ;
+        
         $notification       =   array(
             'message'       => 'Property Data Add Successfully!!',
             'alert-type'    => 'success'

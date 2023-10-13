@@ -18,7 +18,7 @@
                             <div class="card">
                                 <div class="card-body ">
                                     <h6 class="card-title text-center text-danger"> Property Add Type</h6>
-                                    <form action="{{route('store_type')}}" method="POST" class="forms-sample">
+                                    <form  id="myForm" action="{{route('store_type')}}" method="POST" class="forms-sample">
                                         @csrf
                                         <div class="row mb-3">
                                             <label for="type_name" class="col-sm-3 col-form-label text-md-right">Type Name</label>
@@ -56,4 +56,30 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('backend/assets/js/jequery.min.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $('#myForm').validate({
+                rules: {
+                    type_name: {required : true,}, 
+                    type_icon:{required : true,}, 
+                },
+                messages :{
+                    type_name: {required : 'Please Enter Permission Name'}, 
+                    type_icon: { required : 'Please Select Group'}, 
+                },
+                errorElement : 'span', 
+                errorPlacement: function (error,element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight : function(element, errorClass, validClass){
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight : function(element, errorClass, validClass){
+                    $(element).removeClass('is-invalid');
+                },
+            });
+        });
+    </script>
 @endsection

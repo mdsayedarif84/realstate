@@ -136,7 +136,7 @@ class AdminController extends Controller
             'phone' => 'required',
             'address' => 'required',
             'photo' => 'required',
-        ],
+            ],
             [
                 'username.required' => 'Fill Up The nique Name!',
                 'name.required' => 'Please set the link!',
