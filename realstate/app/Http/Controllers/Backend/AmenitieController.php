@@ -17,15 +17,20 @@ class AmenitieController extends Controller
       }
       public function StoreAmenitie(Request $request){
          $request->validate([
-             'amenities_name'  =>  'required|unique:amenities|max:200',   
-             'status'  =>  'required'    
-          ]);
-          Amenities::insert([
-             'amenities_name'  =>  $request->amenities_name,   
-             'status'  =>  $request->status  
-         ]);
+                'amenities_name'  =>  'required|unique:amenities|max:200',   
+                'status'  =>  'required'    
+            ],
+            [
+                'amenities_name.unique' => 'The Name Have Already Taken!',
+                'status.required' => 'Please select status!',
+            ]
+        );
+        $amenity   =   new Amenities();
+        $amenity->amenities_name   = $request->amenities_name;
+        $amenity->status   = $request->status;
+        $amenity->save() ;
          $notification       =   array(
-             'message'       => 'Ameniti Data Add Successfully!!',
+             'message'       => 'Amenity Data Add Successfully!!',
              'alert-type'    => 'success'
          );
          return redirect()->route('all_amenitie')->with($notification);
