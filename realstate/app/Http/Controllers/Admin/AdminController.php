@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 class AdminController extends Controller
 {
@@ -16,15 +17,18 @@ class AdminController extends Controller
         // return view('admin.admin_dashboard');
         return view('admin.body.index');
     }
+    protected $AuthenticatedSessionController;
+    public function __construct(AuthenticatedSessionController $AuthenticatedSessionController)
+    {
+        $this->AuthenticatedSessionController = $AuthenticatedSessionController;
+    }
+        //Http/Auth/AuthenticatedSessionController 
     public function adminLogin(){
-        return view('admin.login.admin_login');
+        return $this->AuthenticatedSessionController->create();
     }
     public function adminLogout(Request $request)
     {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/admin/login');
+        return $this->AuthenticatedSessionController->destroy($request);
     }
     public function adminData(){
         $userId         =   Auth::user()->id;

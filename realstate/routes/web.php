@@ -34,8 +34,8 @@ Route::middleware(['auth','roles:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminController::class, 'profileFinalUpdateInfo'])->name('admin_profile_store');
     Route::get('/admin/change/password', [AdminController::class, 'adminChangePassword'])->name('admin_change_password');
     Route::post('admin/update/password', [AdminController::class, 'adminUpdatePassword'])->name('admin_update_password');
-
 });
+//admin loging blade custom route position is roues/auth.php
 Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
 
 //Agent Gorup Middleware
