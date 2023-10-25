@@ -51,17 +51,19 @@
                           <input type="password" name="password" class="form-control" id="password" autocomplete="current-password" placeholder="Password">
                         </div>
                         <div class="form-check mb-3">
-                          <input type="checkbox" class="form-check-input" id="authCheck">
-                          <label class="form-check-label" for="authCheck">
-                            Remember me
+                          <label for="remember_me" class="inline-flex items-center">
+                              <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                              <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                           </label>
                         </div>
                         <div>
                           <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</button>
-                          <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                            <i class="btn-icon-prepend" data-feather="twitter"></i>
-                            Login with twitter
-                          </button>
+                          @if (Route::has('password.request'))
+                            <a type="button" href="{{ route('password.request') }}" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                              <i class="btn-icon-prepend" data-feather="twitter"></i>
+                              {{ __('Forgot your password?') }}
+                            </a>
+                          @endif
                         </div>
                         <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a>
                       </form>
