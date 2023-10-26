@@ -92,6 +92,7 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row mb-3">
                                             <label for="photo" class="col-sm-2 col-form-label">Photo</label>
                                             <div class="col-sm-4">
@@ -127,7 +128,7 @@
             $('#photo').change(function(e){
                 var reader  = new FileReader();
                 reader.onload   = function(e){
-                $('#showImage').attr('src',e.target.result);
+                    $('#showImage').attr('src',e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0'])
             });
