@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\AmenitieController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\GorupNameController;
+use App\Http\Controllers\Dashboard\DashboardController;
 
 
 Route::get('/', function () {
@@ -28,7 +29,7 @@ require __DIR__.'/auth.php';
 
 //Admin Gorup Middleware
 Route::middleware(['auth','roles:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'adminProfile'])->name('admin_profile');
     Route::post('/admin/profile/store', [AdminController::class, 'profileFinalUpdateInfo'])->name('admin_profile_store');

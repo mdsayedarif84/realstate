@@ -13,10 +13,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 class AdminController extends Controller
 {
-    public function adminDashboard(){
-        // return view('admin.admin_dashboard');
-        return view('admin.body.index');
-    }
     protected $AuthenticatedSessionController;
     public function __construct(AuthenticatedSessionController $AuthenticatedSessionController)
     {
