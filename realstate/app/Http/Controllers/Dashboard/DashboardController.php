@@ -10,7 +10,9 @@ use App\Models\User;
 class DashboardController extends Controller
 {
     public function adminDashboard(){
-        $allUsers  = User::all();
+        $allUsers  = User::select('*')
+            ->orderBy('id', 'DESC')
+            ->get();
         return view('admin.body.index',compact('allUsers'));
     }
 }
